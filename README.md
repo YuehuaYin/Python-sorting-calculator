@@ -6,4 +6,4 @@ The application wil display all the steps taken to sort the numbers, as well as 
 
 This is my first project using tkinter in python and is intended as a learning tool and revision for first year of university.
 
-Credits: I have used resources from the web to help with my code. Websites used include www.w3schools.com, stackoverflow.com, www.geeksforgeeks.org, tkdocs.com etc.
+Credits: I have used resources from the web to help with my code. Websites used include www.w3schools.com, www.stackoverflow.com, www.geeksforgeeks.org, www.tkdocs.com etc.
