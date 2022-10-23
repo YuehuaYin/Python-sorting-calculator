@@ -9,6 +9,7 @@ from tkinter import scrolledtext
 #set up window
 root = Tk()
 root.title("Sorting calculator")
+root.resizable(False, False)
 
 #frames for layout
 left_frame = LabelFrame(root)
@@ -36,12 +37,24 @@ scrolltxt.configure(state='disabled')
 #checkbox
 check = IntVar()
 checkbox = Checkbutton(button_frame, text="Print array with every step", font = ("Arial", 16), variable=check)
-checkbox.grid(row = 8, padx = 15, pady = 5)
+checkbox.grid(row = 7, padx = 15, pady = 14)
 
 #set up step count label
 s = 0
 steps_label = Label(left_frame, text = "Step count for sort goes here!", font = ("Arial", 15))
 steps_label.grid(row = 3)
+
+#function to open popup if invalid inputs
+def popup():
+    popup = Toplevel(root)
+    popup.geometry("475x125")
+    popup.title("Error!")
+    popup.resizable(False, False)
+    label1 = Label(popup, text = "Error: invalid input", font = ("Arial", 20))
+    label1.grid(row = 1, padx = 5, pady = 5)
+    label2 = Label(popup, text = "Input must be a list of numbers seperated by a comma\nEg. 1,2,3,4,5", font = ("Arial", 14))
+    label2.grid(row = 2, padx = 5, pady = 5)
+    
 
 #merge sort recursion function
 def merge_sort(a):
@@ -257,8 +270,13 @@ def bubble_button():
     
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -306,8 +324,13 @@ def insertion_button():
 
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -337,8 +360,13 @@ def merge_button():
 
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -368,8 +396,13 @@ def merge_insertion_button():
 
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -399,8 +432,13 @@ def quick_button():
 
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -431,8 +469,13 @@ def quick_insertion_button():
 
     #get numbers from entry field
     input = enter.get().split(",")
-    #CHANGE IT INTO INT
-    input = list(map(int,input))
+    #check if valid inputs and turn into list of ints if valid
+    try:
+        input = list(map(int,input))
+    except:
+        popup()
+        scrolltxt.configure(state='disabled')
+        return
 
     #variables
     global steps_label
@@ -454,34 +497,28 @@ def quick_insertion_button():
     #disable scrolltxt
     scrolltxt.configure(state='disabled')
 
-def radix_button():
-    print("Not implemented yet, please check back later")
-
 #label for buttons
-button_label = Label(button_frame, text = "Select algorithm:", font = ("Impact", 24), pady=10)
+button_label = Label(button_frame, text = "Select algorithm:", font = ("Impact", 20), pady=10)
 button_label.grid(row = 0)
 
 #buttons
 button = Button(button_frame, text = "Bubble sort", font = ("Arial", 16), command = bubble_button)
-button.grid(row = 1, padx=15, pady=10)
+button.grid(row = 1, padx=15, pady=14)
 
 button = Button(button_frame, text = "Insertion sort", font = ("Arial", 16), command = insertion_button)
-button.grid(row = 2, padx=15, pady=10)
+button.grid(row = 2, padx=15, pady=14)
 
 button = Button(button_frame, text = "Merge sort", font = ("Arial", 16), command = merge_button)
-button.grid(row = 3, padx=15, pady=10)
+button.grid(row = 3, padx=15, pady=14)
 
 button = Button(button_frame, text = "Merge sort with insertion sort", font = ("Arial", 16), command = merge_insertion_button)
-button.grid(row = 4, padx=15, pady=10)
+button.grid(row = 4, padx=15, pady=14)
 
 button = Button(button_frame, text = "Quick sort", font = ("Arial", 16), command = quick_button)
-button.grid(row = 5, padx=15, pady=10)
+button.grid(row = 5, padx=15, pady=14)
 
 button = Button(button_frame, text = "Quick sort with insertion sort", font = ("Arial", 16), command = quick_insertion_button)
-button.grid(row = 6, padx=15, pady=10)
-
-button = Button(button_frame, text = "Radix sort", font = ("Arial", 16), command = radix_button)
-button.grid(row = 7, padx=15, pady=10)
+button.grid(row = 6, padx=15, pady=14)
 
 #run program
 root.mainloop()
